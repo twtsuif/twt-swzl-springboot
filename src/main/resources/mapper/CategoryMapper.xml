@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suif.mapper.CategoryMapper">
+
+
+    <select id="getUpCategoryId" resultType="Integer">
+        SELECT tb_category.id FROM tb_category WHERE tb_category.id =(SELECT tb_category.up_id FROM tb_category WHERE tb_category.id = #{categoryId})
+    </select>
+
+
+    <select id="getCategory" resultType="String">
+        SELECT image_url FROM tb_category_image WHERE id = #{categoryId}
+    </select>
+</mapper>

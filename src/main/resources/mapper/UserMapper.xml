@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.suif.mapper.UserMapper">
+    <delete id="deletePost">
+        delete from tb_post_user where post_id = #{id}
+    </delete>
+
+
+    <select id="getPostByUser" resultType="com.suif.entity.Post">
+        SELECT p.`campus`,p.`category_id`,p.`contact`,p.`created`,p.`description`,p.`find_location`,p.`id`,p.`images`,p.`now_location`,p.`tags`,p.`user_id` FROM tb_post p,tb_post_user u WHERE u.`post_id`=p.`id`
+    </select>
+</mapper>

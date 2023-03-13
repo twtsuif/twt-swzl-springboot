@@ -1,0 +1,22 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-swallow-size: -1
+
+spring:
+  profiles:
+    active: dev
+
+suif:
+  jwt:
+    secret: twtsuif
+    expire: 604800000
+  oss:
+    endpoint: oss-cn-qingdao.aliyuncs.com
+    bucket: twtfind
+    accessKeyId: ${your_key_id}
+    accessKeySecret: ${your_key_secret}
+  mail:
+    sendFrom: suif0917@126.com
+    sendTo: 2499110977@qq.com
+    subject: 反馈邮件

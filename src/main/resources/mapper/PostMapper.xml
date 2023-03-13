@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suif.mapper.PostMapper">
+
+    <select id="selectEarlier" resultType="com.suif.entity.Post">
+        SELECT * FROM tb_post WHERE created <![CDATA[ < ]]> SUBDATE(NOW(),INTERVAL 6 DAY)
+    </select>
+
+    <select id="getPosts" resultType="com.suif.entity.Post">
+        select * from tb_post where 1 = 1
+        <if test="campus!=null">
+            and campus = #{campus}
+        </if>
+        <if test="categoryId!=null">
+            and category_id in (select id from tb_category where up_id = #{categoryId})
+        </if>
+        <if test="date!=''">
+            <if test="date=='earlier'">
+                and date_sub(CURDATE(), INTERVAL 7 DAY) &gt;= date(created)
+            </if>
+            <if test="date!='earlier'">
+                and date(created) = #{date}
+            </if>
+        </if>
+        order by created desc
+    </select>
+</mapper>
